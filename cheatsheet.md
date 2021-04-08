@@ -15,6 +15,30 @@ $ sudo nmap -sC -sV -oA nmap/$PROJECT_NAME $IP
 $ sudo nmap -p- $IP -oA nmap/$PROJECT_NAME
 ```
 
+# Fuzzing
+## ffuf - Fuzzing API endpoints
+* Fuzz with a random dictionary to find new endpoints
+```bash
+$ ffuf -u http://$ADDRESS/FUZZ -w $DICTIONARY 
+```
+
+* You can also fuzz with a dictionary of special characters to check if something breaks the API
+
+* If the API responds with a certain HTTP code (ex. 500 or 404) you can include it in ffuf output.
+```bash
+$ ffuf -u http://$ADDRESS/FUZZ -w $DICTIONARY -mc 200,500,404
+```
+
+* You can filter responses with a certain number of words
+```bash
+$ ffuf -u http://$ADDRESS/FUZZ -w $DICTIONARY -fw 5
+```
+
+## gobuster - Fuzzing API endpoints
+```bash
+
+```
+
 # Exploiting
 ## Metasploit
 * Start metasploit
@@ -57,30 +81,6 @@ msf6 > set payload $VALUE
 * Run exploit
 ```bash
 msf6 > run
-```
-
-# Fuzzing
-## ffuf - Fuzzing API endpoints
-* Fuzz with a random dictionary to find new endpoints
-```bash
-$ ffuf -u http://$ADDRESS/FUZZ -w $DICTIONARY 
-```
-
-* You can also fuzz with a dictionary of special characters to check if something breaks the API
-
-* If the API responds with a certain HTTP code (ex. 500 or 404) you can include it in ffuf output.
-```bash
-$ ffuf -u http://$ADDRESS/FUZZ -w $DICTIONARY -mc 200,500,404
-```
-
-* You can filter responses with a certain number of words
-```bash
-$ ffuf -u http://$ADDRESS/FUZZ -w $DICTIONARY -fw 5
-```
-
-## gobuster - Fuzzing API endpoints
-```bash
-
 ```
 
 # Post-exploitation
