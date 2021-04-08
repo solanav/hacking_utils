@@ -89,3 +89,11 @@ $ ffuf -u http://$ADDRESS/FUZZ -w $DICTIONARY -fw 5
 ```bash
 $ nc -lvnp $PORT
 ```
+
+## Stealing SSH private key
+* If you get an id_rsa file (OpenSSH private key) you can do the following to use it:
+```bash
+$ echo $PRIVATE_KEY > keyfile
+$ chmod 600 keyfile
+$ ssh -i keyfile $USER@$IP
+```
